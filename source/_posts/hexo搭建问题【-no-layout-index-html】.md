@@ -1,7 +1,10 @@
 ---
 title: 'hexo搭建问题【 no layout: index.html】'
 date: 2019-09-07 16:03:18
-tags: Technology
+tags: 
+    - Hexo
+categories :
+    - Technology
 ---
 
 由于在公司都是用MAC写博客，回到家想用Windows搭一套环境。

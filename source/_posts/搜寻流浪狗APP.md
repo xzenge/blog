@@ -1,7 +1,11 @@
 ---
 title: 搜寻流浪狗APP???
 date: 2019-09-06 23:41:32
-tags: Translation
+tags: 
+    - AI
+    - APP
+categories:
+    - Translation
 ---
 
 ## 中国AI公司开发了用鼻纹搜索流浪狗的APP
