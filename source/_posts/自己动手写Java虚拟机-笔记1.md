@@ -53,6 +53,7 @@ type Cmd struct {
 {% endcodeblock %}
 
 2. 解析入参
+
 {% codeblock lang:go %}
 func parseCmd() *Cmd {
 	cmd := &Cmd{} //实例化入参对象
@@ -78,6 +79,8 @@ func printUsage() {
 {% endcodeblock %}
 
 3. 启动方法
+
+
 {% codeblock lang:go %}
 func main () {
 	cmd := parseCmd() //解析方法
@@ -96,6 +99,7 @@ func startJVM(cmd *Cmd){
 {% endcodeblock %}
 
 4. 试运行
+
 {% codeblock lang:shell %}
 D:\work\workspace_go\src\jvmgo\ch01> go install
 
