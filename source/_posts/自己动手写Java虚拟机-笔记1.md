@@ -21,7 +21,7 @@ https://golang.google.cn/
 {% asset_img gopath.png GOPATH %}
 
 同时要注意，go的工作目录为该目录，如果需要切换需要改变此路径，不然可使用GoLand等ide切换。
-
+<!-- more -->
 
 ## 简单实现java命令
 java SDK自带很多命令，如java、javac、javap等。
