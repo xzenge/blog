@@ -3,7 +3,7 @@ title: 自己动手写Java虚拟机 笔记1
 date: 2019-09-09 22:18:50
 tags: 
     - JVM
-    - JAVA
+    - Java
     - Go
 categories :
     - Technology
