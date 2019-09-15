@@ -9,6 +9,8 @@ categories :
     - Technology
 ---
 
+第三篇主要学习JVM中class文件的具体结构，和JVM是如何解析这些结构的。
+我们可以通过javac工具将一个java文件compile成一个.class文件，并通过我们自己写的jvm将该文件解析并打印出来。通过class文件的学习能让我们更加深刻的理解java是怎样实现跨平台，并且我们编写的java代码又是如何在JVM中体现的。
 <!-- more -->
 
 ### JVM中class文件结构(ClassFile)
@@ -52,6 +54,7 @@ ACC_ENUM|0x4000|枚举类型|枚举
 
 ### 实现
 1. 定义Class文件的录取类(ClassReader)
+
 {% codeblock lang:golang %}
 type ClassReader struct {
 	data []byte //class文件字节流
@@ -100,7 +103,8 @@ func (self *ClassReader) readBytes(n uint32) []byte {
 }
 {% endcodeblock %}
 
-2. 定义Class文件的格式(ClassFile)
+1. 定义Class文件的格式(ClassFile)
+
 {% codeblock lang:golang %}
 type ClassFile struct { //按照jvm规范，定义class文件结构
 	//magic      uint32
@@ -213,4 +217,51 @@ func (self *ClassFile) InterfaceNames() []string {
 	}
 	return interfaceNames
 }
+{% endcodeblock %}
+
+1. 定义字段和方法的结构(field_info、method_info)
+
+{% codeblock lang:golang %}
+type MemberInfo struct { //field和method的结构类型，使用同一个结构
+	cp              ConstantPool //当前常量池
+	accessFlags     uint16 //访问标志
+	nameIndex       uint16 //名称索引
+	descriptorIndex uint16 //描述索引
+	attributes      []AttributeInfo //属性列表 
+}
+
+// read field or method table
+func readMembers(reader *ClassReader, cp ConstantPool) []*MemberInfo {
+	memberCount := reader.readUint16() //读取field或method数量
+	members := make([]*MemberInfo, memberCount) //创建数组
+	for i := range members {
+		members[i] = readMember(reader, cp)
+	}
+	return members
+}
+
+//具体读取field和method的方法
+func readMember(reader *ClassReader, cp ConstantPool) *MemberInfo {
+	return &MemberInfo{
+		cp:              cp,
+		accessFlags:     reader.readUint16(), //读取2Byte的访问控制符
+		nameIndex:       reader.readUint16(), //读取2Byte的名称索引
+		descriptorIndex: reader.readUint16(), //读取2Byte的描述索引
+		attributes:      readAttributes(reader, cp), //读取属性列表
+	}
+}
+
+//对外暴露get方法
+func (self *MemberInfo) AccessFlags() uint16 {
+	return self.accessFlags
+}
+//对外暴露get方法，通过名称索引访问常量池
+func (self *MemberInfo) Name() string {
+	return self.cp.getUtf8(self.nameIndex)
+}
+//对外暴露get方法，通过描述索引访问常量池
+func (self *MemberInfo) Descriptor() string {
+	return self.cp.getUtf8(self.descriptorIndex)
+}
+
 {% endcodeblock %}
