@@ -11,7 +11,7 @@ categories:
 ## 容器
 
 ### IOC
-
+<!-- more -->
 spring-context
 
 - @Configuration
