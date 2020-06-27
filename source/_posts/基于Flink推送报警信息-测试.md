@@ -29,7 +29,7 @@ categories :
     flushDiskType = ASYNC_FLUSH
     brokerIP1 = 192.168.1.2
    ```
-
+  <!-- more -->
 4. 启动broker
    - docker run -d -p 10911:10911 -p 10909:10909 -v  D:\work\rocketmq\data\broker\logs:/root/logs -v  D:\work\rocketmq\data\broker\store:/root/store -v  D:\work\rocketmq\conf\broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf --name rmqbroker --link rmqnamesrv:namesrv -e "NAMESRV_ADDR=namesrv:9876" -e "MAX_POSSIBLE_HEAP=200000000" rocketmqinc/rocketmq:4.4.0 sh mqbroker -c /opt/rocketmq-4.4.0/conf/broker.conf
 
@@ -54,7 +54,7 @@ categories :
 --nameserverAddress 127.0.0.1:9876 --consumerGroup flinkGroup --consumerTopic AlertWechatTopic
 
 2. 启动Flink本地运行时Job
-3. 
+   
 {% asset_img flink-local.png 400 400 牌子 %}
 
 3. 模拟一条报警信息
