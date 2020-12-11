@@ -20,13 +20,12 @@ article:
   readtime: true
   # Code highlight theme, please see https://highlightjs.org/static/demo/
   highlight: atom-one-light
+  # Date format: relative | full | relative_full | full_relative
+  date_format: relative
 
 # Navigation bar menu links.
 menu:
   Archives: /archives
-  # Lifestyle: /categories/LifeStyle
-  # Music: /categories/Music
-  # Technology: /categories/Technology
   Categories: /categories
   Tag: /tags
   About: /about
@@ -64,8 +63,8 @@ plugins:
 navbar_links:
   GitHub:
     icon: fab fa-github
-    url: https://github.com/xzenge
+    url: https://github.com/nadia-repository
 
 # Links at the bottom of the page.
 footer_links:
-  GitHub: https://github.com/xzenge
+  GitHub: https://github.com/nadia-repository
