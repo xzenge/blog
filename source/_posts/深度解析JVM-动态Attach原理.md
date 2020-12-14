@@ -90,7 +90,7 @@ Socket通信可以分为远程通信和本地通信。我们需要考虑，如�
 
 ##### 我们先启动项目。该项目模拟了JVM运行环境，但只实现了Attach API的部分功能。项目启动成功后，我们可以看到当前的JVM进程ID为：<font color=red>32910</font>
 
-{% asset_img JVM_start.png 800 800 idea %}
+![01](深度解析JVM-动态Attach原理/JVM_start.png)
 
 ----
 
@@ -111,7 +111,7 @@ public class Attach {
 ----
 ##### 运行Java attach方法，我们可以观察到模拟的JVM已经读取到了我们希望classloader的Jar包
 
-{% asset_img load_agent_library.png 800 800 idea %}
+![02](深度解析JVM-动态Attach原理/load_agent_library.png)
 
 ----
 
@@ -634,4 +634,4 @@ static AttachOperationFunctionInfo funcs[] = {
 
 
 <font color=red>总结</font>,相信通过上面的分析我们已经清楚的了解JVM是如何接收到Java客户端发起的请求，从而实现动态Attach的功能。具体流程如图：
-{% asset_img flow.png 800 800 idea %}
+![03](深度解析JVM-动态Attach原理/flow.png)

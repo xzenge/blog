@@ -42,11 +42,11 @@ categories :
 ### RocketMQ 设置
 以上，我们就在本地环境简单的部署好了rocketMQ的运行环境
 
-{% asset_img rocketmq-dashboard.png 400 400 牌子 %}
+![01](基于Flink推送报警信息-测试/rocketmq-dashboard.png)
 
 我们配置下Topic
 
-{% asset_img rocketmq-topic.png 400 400 牌子 %}
+![02](基于Flink推送报警信息-测试/rocketmq-topic.png)
 
 ### 启动Flink本地运行时环境
 1. 配置启动参数
@@ -55,15 +55,15 @@ categories :
 
 2. 启动Flink本地运行时Job
    
-{% asset_img flink-local.png 400 400 牌子 %}
+![03](基于Flink推送报警信息-测试/flink-local.png)
 
 3. 模拟一条报警信息
 
-{% asset_img rocketmq-message.png 400 400 牌子 %}
+![04](基于Flink推送报警信息-测试/rocketmq-message.png)
 
 4. 查看报警信息
 
-{% asset_img wechat-message.png 400 400 牌子 %}
+![05](基于Flink推送报警信息-测试/wechat-message.png)
 
 
 ### 总结

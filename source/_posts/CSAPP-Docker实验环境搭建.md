@@ -15,14 +15,14 @@ CSAPP 的Docker实验环境在windows下的安装过程，MacOS下一致。
 docker search ubuntu
 ```
 
-{% asset_img search.png 800 800 search %}
+![01](CSAPP-Docker实验环境搭建/search.png)
 
 ### 拉取最新镜像
 ``` shell
 docker pull ubuntu:latest
 ```
 
-{% asset_img pull.png 800 800 pull %}
+![02](CSAPP-Docker实验环境搭建/pull.png)
 
 ### 配置并启动ubuntu容器
 1. -it 中断交互式

@@ -18,7 +18,7 @@ https://golang.google.cn/
 
 2. 设置Go环境变量
 
-{% asset_img gopath.png GOPATH %}
+![01](自己动手写Java虚拟机-笔记1/gopath.png)
 
 同时要注意，go的工作目录为该目录，如果需要切换需要改变此路径，不然可使用GoLand等ide切换。
 <!-- more -->

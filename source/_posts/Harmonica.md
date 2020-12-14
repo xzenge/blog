@@ -19,7 +19,7 @@ Flower Dance已经被各种乐器大神演绎过了，但龙登杰的半音阶�
 
 我的第一把布鲁斯口琴：
 
-{% asset_img SilverStar.jpeg 400 400 SilverStar %}
+![01](Harmonica/SilverStar.jpeg)
 
 Hohner(赫莱)在口琴界是几大品牌之一，最为德国的品牌其质量一直是广大琴友口口相传的。但这吧SilverStar就另当别论了，要比喻的话就类似德国宝马和国产宝马的区别。
 
@@ -29,7 +29,7 @@ Hohner(赫莱)在口琴界是几大品牌之一，最为德国的品牌其质量
 
 第二把口琴：
 
-{% asset_img GodenMelody.jpeg 400 400 GodenMelody %}
+![02](Harmonica/GodenMelody.jpeg)
 
 我的第二把口琴还是Hohner，但这把是真真切切的原厂口琴。小300的价格也算布鲁斯里的劳力士了😂。
 

@@ -151,7 +151,8 @@ byte[] code = cw.toByteArray();
 //动态加载类
 Class<?> serializerClass = classLoader.defineClassPublic(classNameFull, code, 0, code.length);
 ```
-{% asset_img classload断点.png 600 600 断点 %}
+
+![01](fastjson序列化异常排查/classload断点.png)
 
 * 打开HSDB
 ``` shell
@@ -160,21 +161,22 @@ java -cp sa-jdi.jar sun.jvm.hotspot.HSDB
 
 * 获取当前java进程
 
-{% asset_img jps.png 400 400 jps %}
+![02](fastjson序列化异常排查/jps.png)
 
 * HSDB attach当前java进程
 
-{% asset_img hdbs_attach.png 600 600 hdbs_attach %}
+![03](fastjson序列化异常排查/hdbs_attach.png)
+
 
 * 执行方法至断点处后，在HSDB搜索代理类
 
-{% asset_img class_browser.png 600 600 class_browser %}
+![04](fastjson序列化异常排查/class_browser.png)
 
 通过观察FastJsonSerializerWrapper.writeNormal()方法的字节码也可以发现，在调用processValue()方法的时候缺少了一个参数。
 
 * 查看FastJsonSerializerWrapper的常量池
 
-{% asset_img constantpool.png 600 600 constantpool %}
+![05](fastjson序列化异常排查/constantpool.png)
 
 查看常量池中的内容，也再次确认了processValue()方法的签名存在问题：入参不对、返回参数也有问题。
 
@@ -187,7 +189,7 @@ ASMSerializer_6_FastJsonSerializerWrapper.processValue()方法的返回值有两
 
 之前阅读fastjson源码的时候，我们曾经来到这么一段代码。
 
-{% asset_img classload断点.png 600 600 断点 %}
+![06](fastjson序列化异常排查/classload断点.png)
 
 显然源码是通过调用native方法，将类的字节流写入到JVM中的。jdk为开发者提供了丰富的类加载机制，但究其源还是依赖了这三个native方法，并且这三个方法仅仅是入参不同，其背后的实现原理其实是一样的。
 > 方法清单：java.lang.ClassLoader
@@ -392,14 +394,15 @@ JVM在解析方法的逻辑中，会先对方法的合法性做各种校验。�
 
 顺着这个思路我们再看看服务启动时的参数。由于是采用IDEA启动的springboot项目，我们没有手动指定各种启动参数。老样子我们还是借助其他工具进行查看。这次我们使用jdk自带的VisualVM。
 
-{% asset_img visualVM.png 600 600 visualVM %}
+![07](fastjson序列化异常排查/visualVM.png)
+
 
 这回事真相大白了，通过IDEA默认启动springboot项目时，会默认带上<font color=red>-Xverify:none</font>参数。结合我们上面对JVM源码的分析，在Xverify==none时。加载类模板时不会对类结构的合法性进行校验，这也最终导致了为什么方法签名明明不正确，但是JVM还是成功的加载了这个类。
 
 至于为什么IDEA启动的时候会带上<font color=red>-Xverify:none</font>参数，我们可以参考官网的一句话。
 > https://www.jetbrains.com/help/idea/run-debug-configuration-spring-boot.html#configuration-tab
 
-{% asset_img idea.png 600 600 idea %}
+![08](fastjson序列化异常排查/idea.png)
 
 ## 总结
 至此，整个fastjson序列化引起的异常已经排查完了。

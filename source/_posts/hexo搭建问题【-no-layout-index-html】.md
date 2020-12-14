@@ -13,6 +13,6 @@ categories :
 
 找了半天原因原来是个很傻的问题，这里mark下以免下次再犯。
 
-{% asset_img nolayout.jpg 200 200 no layout %}
+![01](hexo搭建问题【-no-layout-index-html】/nolayout.jpg)
 
 模板是空的！！！模板是空的！！！模板是空的！！！
